@@ -62,9 +62,8 @@ dependencies {
     //allow awaiting task results from Firebase coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
 
-    // ----------------------
+
     // Firebase (BOM-managed)
-    // ----------------------
     implementation(platform("com.google.firebase:firebase-bom:33.2.0"))
 
     //Firebase dependencies
@@ -77,6 +76,11 @@ dependencies {
     //Glide for image loading
     implementation("com.github.bumptech.glide:glide:4.15.1")
     kapt("com.github.bumptech.glide:compiler:4.15.1")
+
+    //Maps Dependencies
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("com.google.android.material:material:1.13.0")
 
     implementation("com.google.android.gms:play-services-auth:21.2.0") // Google Sign-In
     implementation("androidx.biometric:biometric:1.1.0") //biometric auth

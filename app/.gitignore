@@ -1,1 +1,44 @@
-/build
+# Gradle files
+.gradle/
+build/
+*/build/
+
+# Local configuration file (SDK path, etc)
+local.properties
+
+# IntelliJ / Android Studio
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Log files
+*.log
+
+# Android generated files
+captures/
+outputs/
+generated/
+
+# Keystore files
+*.jks
+*.keystore
+
+# Google Services (contains API keys – keep private)
+google-services.json
+
+# Firebase Crashlytics
+crashlytics-build.properties
+
+# Sensitive map key file (DO NOT COMMIT)
+app/src/main/res/values/google_map_key.xml
+
+# Machine-specific files
+.DS_Store
+Thumbs.db
+
+# Kotlin build cache
+.kotlinc/
+
+# Gradle caches
+.gradle/
