@@ -1,4 +1,4 @@
-package com.varsitycollege.st10303285.colligo.network
+package com.varsitycollege.st10303285.colligoapp.network
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

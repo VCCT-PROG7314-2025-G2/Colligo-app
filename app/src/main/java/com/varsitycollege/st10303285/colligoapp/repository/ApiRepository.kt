@@ -1,9 +1,9 @@
-package com.varsitycollege.st10303285.colligo.repository
+package com.varsitycollege.st10303285.colligoapp.repository
 
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.varsitycollege.st10303285.colligo.network.ApiService
-import com.varsitycollege.st10303285.colligo.network.RetrofitClient
+import com.varsitycollege.st10303285.colligoapp.network.ApiService
+import com.varsitycollege.st10303285.colligoapp.network.RetrofitClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

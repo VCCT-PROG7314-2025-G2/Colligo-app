@@ -1,4 +1,4 @@
-package com.varsitycollege.st10303285.colligo.network
+package com.varsitycollege.st10303285.colligoapp.network
 
 import retrofit2.http.*
 import retrofit2.Response

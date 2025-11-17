@@ -1,4 +1,4 @@
-package com.varsitycollege.st10303285.colligo
+package com.varsitycollege.st10303285.colligoapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -1,4 +1,4 @@
-package com.varsitycollege.st10303285.colligo.network
+package com.varsitycollege.st10303285.colligoapp.network
 
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.ktx.auth

@@ -1,4 +1,4 @@
-package com.varsitycollege.st10303285.colligo
+package com.varsitycollege.st10303285.colligoapp
 
 import org.junit.Test
 

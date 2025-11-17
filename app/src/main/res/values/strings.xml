@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Colligo</string>
+    <string name="get_started">Get Started</string>
+    <string name="navigate_connect_thrive">Navigate · Connect · Thrive</string>
+    <string name="white_app_logo">white app logo</string>
+    <string name="maroon_app_name">maroon app name</string>
+    <string name="login">login</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="don_t_have_an_account_register">Don’t have an account? Register</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="app_logo">App Logo</string>
+    <string name="already_have_an_account_login">Already have an account? Login</string>
+    <string name="university">University</string>
+    <string name="default_web_client_id">1009352501623-gku59r3l2lf6ols5d5mohsbaasf046m4.apps.googleusercontent.com</string>
+
+
 </resources>
