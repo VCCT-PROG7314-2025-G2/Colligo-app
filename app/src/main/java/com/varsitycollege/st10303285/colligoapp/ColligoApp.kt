@@ -10,7 +10,7 @@ class ColligoApp : Application() {
         super.onCreate()
     }
 
-    // Also override attachBaseContext to wrap base context on some devices (optional)
+    // ensure locale is applied to all activities
     override fun attachBaseContext(base: android.content.Context) {
         val localeWrapped = LocaleHelper.setLocale(base, LocaleHelper.getSavedLanguage(base))
         super.attachBaseContext(localeWrapped)

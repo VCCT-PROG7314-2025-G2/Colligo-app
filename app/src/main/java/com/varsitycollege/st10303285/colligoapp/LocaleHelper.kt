@@ -11,7 +11,7 @@ object LocaleHelper {
 
     /**
      * Returns a new Context with the requested locale applied.
-     * Call this when you want resources to reflect the new language.
+     * Called when you want resources to reflect the new language.
      */
     fun setLocale(context: Context, language: String): Context {
         val locale = Locale(language)
@@ -26,7 +26,7 @@ object LocaleHelper {
             config.locale = locale
         }
 
-        // For newer APIs createConfigurationContext; for old ones update resources.
+
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             context.createConfigurationContext(config)
         } else {

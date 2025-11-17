@@ -24,7 +24,7 @@ generated/
 *.jks
 *.keystore
 
-# Google Services (contains API keys – keep private)
+# Google Services
 google-services.json
 
 # Firebase Crashlytics

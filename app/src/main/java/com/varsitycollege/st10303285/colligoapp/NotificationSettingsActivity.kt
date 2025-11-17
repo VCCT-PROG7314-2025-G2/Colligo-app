@@ -17,7 +17,7 @@ class NotificationSettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_notification_settings) // create layout if needed
+        setContentView(R.layout.activity_notification_settings)
 
         swPush = findViewById(R.id.switchPush)
         val prefs = getSharedPreferences(PREFS, Context.MODE_PRIVATE)

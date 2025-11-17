@@ -47,7 +47,7 @@ class HomeActivity : AppCompatActivity() {
         nav?.invalidate()
 
 
-        // Enable offline persistence (simple)
+        // Enable offline persistence
         val settings = FirebaseFirestoreSettings.Builder()
             .setPersistenceEnabled(true)
             .build()
@@ -94,7 +94,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     fun goToHome(view: View) {
-        // We're already on HomeActivity; optionally scroll to top
+
         val scroll = findViewById<View?>(R.id.scrollContent)
         scroll?.let {
             it.scrollTo(0, 0)
@@ -102,7 +102,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun loadSchedule() {
-        // For UI demo, try fetch cached lecture list from Firestore collection "schedule"
+        // load schedule from Firestore
         firestore.collection("schedule")
             .limit(10)
             .get()
@@ -127,7 +127,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupRealtimeScheduleListener() {
-        // demonstrates real-time updates — useful for the schedule card
+        // demonstrates real-time updates
         firestore.collection("schedule")
             .addSnapshotListener { snapshot, error ->
                 if (error != null) {
@@ -144,19 +144,19 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setupNavBarAndInsets() {
-        // get nav bar and icons (guard for null if include id differs)
+        // get nav bar and icons
         navBar = findViewById(R.id.bottomNav)
         if (navBar == null) {
             Log.w("HomeActivity", "bottomNav view not found. Ensure include id '@+id/bottomNav' exists.")
             return
         }
 
-        // apply system bar insets so nav won't overlap navigation gestures/buttons
+
         ViewCompat.setOnApplyWindowInsetsListener(navBar!!) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            // keep top/left/right padding, only adjust bottom
+
             v.setPadding(v.paddingLeft, v.paddingTop, v.paddingRight, systemBars.bottom)
-            // return insets so other listeners can use them
+
             insets
         }
 
@@ -172,7 +172,7 @@ class HomeActivity : AppCompatActivity() {
         // navBar might be null (guard)
         if (navBar == null) return
 
-        // Home -> no-op (we're already here). We still handle click to scroll top.
+
         iconHome?.setOnClickListener {
             // optional: scroll to top
             val scroll = findViewById<View?>(R.id.scrollContent)
@@ -186,21 +186,25 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this, CampusMapActivity::class.java))
         }
 
+
         iconCarpool?.setOnClickListener {
+            // launch CarpoolActivity
             startActivity(Intent(this, CarpoolActivity::class.java))
         }
 
         iconCalendar?.setOnClickListener {
+            // launch PlannerActivity
             startActivity(Intent(this, PlannerActivity::class.java))
         }
 
         iconLostFound?.setOnClickListener {
+            // launch LostFoundActivity
             startActivity(Intent(this, LostFoundActivity::class.java))
         }
     }
 }
 
-/* ----- Lecture data + Adapter (kept in same file for convenience) ----- */
+//Lecture data + Adapter
 
 data class LectureItem(val title: String, val time: String)
 

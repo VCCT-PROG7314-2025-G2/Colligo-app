@@ -283,7 +283,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Reusable bottom nav include (must have id + anchored to bottom) -->
+    <!-- Reusable bottom nav include -->
     <include
         android:id="@+id/bottomNav"
         layout="@layout/nav_bar"

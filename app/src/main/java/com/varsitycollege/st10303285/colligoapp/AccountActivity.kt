@@ -37,10 +37,10 @@ class AccountActivity : AppCompatActivity() {
     private val firestore = FirebaseFirestore.getInstance()
     private val storage = Firebase.storage
 
-    // temporarily hold selected image Uri
+
     private var selectedImageUri: Uri? = null
 
-    // ActivityResultLauncher for picking an image (no runtime permission handling needed)
+    // ActivityResultLauncher for picking an image
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
             selectedImageUri = it
@@ -51,9 +51,9 @@ class AccountActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_account) // <- make sure this is your account layout filename
+        setContentView(R.layout.activity_account)
 
-        // find views (IDs must match your XML)
+        // find views
         profileImage = findViewById(R.id.profileImage)
         etName = findViewById(R.id.etName)
         etAge = findViewById(R.id.etAge)
@@ -78,7 +78,7 @@ class AccountActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
         if (currentUser == null) {
             Toast.makeText(this, "Not logged in", Toast.LENGTH_SHORT).show()
-            // optionally redirect to login
+
             return
         }
 
@@ -142,7 +142,7 @@ class AccountActivity : AppCompatActivity() {
             return
         }
 
-        // if an image was selected, upload it first, then save profile (to include photoUrl)
+        // if an image was selected, upload it first, then save profile
         val uploadTask = selectedImageUri?.let { uri ->
             uploadProfileImageAsBlob(user.uid, uri)
         }

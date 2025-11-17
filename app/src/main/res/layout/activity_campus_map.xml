@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!-- Optional: overlay search / buttons -->
-    <!-- Example floating settings button -->
+
     <ImageView
         android:id="@+id/btnMapSettings"
         android:layout_width="48dp"
