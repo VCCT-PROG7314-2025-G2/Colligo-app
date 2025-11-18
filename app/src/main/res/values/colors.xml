@@ -20,12 +20,12 @@
 
 
     <!-- Lecture Colors -->
-    <color name="lecture_green">#4CAF50</color>
-    <color name="lecture_blue">#2196F3</color>
-    <color name="lecture_purple">#9C27B0</color>
-    <color name="lecture_orange">#FF9800</color>
-    <color name="lecture_red">#F44336</color>
-    <color name="lecture_teal">#009688</color>
-    <color name="lecture_yellow">#FFEB3B</color>
-    <color name="lecture_pink">#E91E63</color>
+
+    <color name="pastel_green">#B5EAD7</color>
+    <color name="pastel_pink">#FFC7CE</color>
+    <color name="pastel_purple">#E0BBE4</color>
+    <color name="pastel_blue">#A0D2EB</color>
+    <color name="pastel_yellow">#FFFFD8</color>
+    <color name="pastel_peach">#FFDAB9</color>
+    <color name="pastel_mint">#C7CEEA</color>
 </resources>

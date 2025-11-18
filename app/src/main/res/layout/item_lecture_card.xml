@@ -1,27 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="10dp"
-    android:layout_marginBottom="8dp"
-    android:background="@drawable/card_bg">
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="4dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
 
-    <TextView
-        android:id="@+id/timeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="08:00"
-        android:textSize="11sp"
-        android:textColor="@android:color/white"/>
-
-    <TextView
-        android:id="@+id/moduleText"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Module Name"
-        android:textSize="13sp"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:maxLines="2"/>
-</LinearLayout>
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:minHeight="85dp">
+
+        <!-- Time -->
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="08:00 - 09:30"
+            android:textColor="#333333"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.02" />
+
+        <!-- Module Name -->
+        <TextView
+            android:id="@+id/tvModuleName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="PHY204 - Physics II"
+            android:textColor="#111111"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:lineSpacingExtra="1dp" />
+
+        <!-- Room -->
+        <TextView
+            android:id="@+id/tvRoom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="Room: LH-23"
+            android:textColor="#555555"
+            android:textSize="10sp" />
+
+        <!-- Notes (optional) -->
+        <TextView
+            android:id="@+id/tvNotes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="Bring calculator"
+            android:textColor="#777777"
+            android:textSize="10sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

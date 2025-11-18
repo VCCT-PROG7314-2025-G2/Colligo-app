@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FDF0ED">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Top Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical"
+            android:background="@android:color/white"
+            android:elevation="8dp">
+
+            <ImageView
+                android:id="@+id/btnSettings"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_settings"
+                app:tint="@color/black" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/btnPrevMonth"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_back"
+                    app:tint="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvMonthYear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AUGUST 2025"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginHorizontal="20dp" />
+
+                <ImageView
+                    android:id="@+id/btnNextMonth"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_forward"
+                    app:tint="@color/black" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/btnSearchAssignment"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_search"
+                app:tint="@color/black" />
+        </LinearLayout>
+
+        <!-- Days Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#FFE0E0"
+            android:padding="12dp">
+
+            <TextView android:layout_width="0dp" android:layout_weight="1" android:text="SUN" android:gravity="center" android:textStyle="bold"/>
+            <TextView android:layout_width="0dp" android:layout_weight="1" android:text="MON" android:gravity="center" android:textStyle="bold"/>
+            <TextView android:layout_width="0dp" android:layout_weight="1" android:text="TUE" android:gravity="center" android:textStyle="bold"/>
+            <TextView android:layout_width="0dp" android:layout_weight="1" android:text="WED" android:gravity="center" android:textStyle="bold"/>
+            <TextView android:layout_width="0dp" android:layout_weight="1" android:text="THU" android:gravity="center" android:textStyle="bold"/>
+            <TextView android:layout_width="0dp" android:layout_weight="1" android:text="FRI" android:gravity="center" android:textStyle="bold"/>
+            <TextView android:layout_width="0dp" android:layout_weight="1" android:text="SAT" android:gravity="center" android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- Calendar Grid -->
+        <GridLayout
+            android:id="@+id/calendarGrid"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:columnCount="7"
+            android:rowCount="6"
+            android:padding="8dp" />
+
+        <View android:layout_width="match_parent" android:layout_height="100dp"/>
+    </LinearLayout>
+
+    <!-- FAB -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAddAssignment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="86dp"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="#000000"
+        app:tint="#FFFFFF" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

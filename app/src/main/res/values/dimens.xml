@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="color_circle_size">40dp</dimen>
+    <dimen name="color_circle_size_small">32dp</dimen>
+</resources>

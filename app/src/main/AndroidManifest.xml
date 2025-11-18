@@ -7,8 +7,6 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
-
-
     <application
         android:name=".ColligoApp"
         android:allowBackup="true"
@@ -20,6 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Colligo">
 
+        <!-- Firebase Messaging Service -->
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">
@@ -28,44 +27,12 @@
             </intent-filter>
         </service>
 
-        <activity
-            android:name=".RequestedRidesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RequestRideActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ViewAvailableRidesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MyRidesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RequestSentActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RequestRideResultsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RequestRideSearchActivity"
-            android:exported="false" />
-        <activity
-            android:name=".OfferRideActivity"
-            android:exported="false" />
-        <activity
-            android:name=".OfferRideSuccessActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PlannerActivity"
-            android:exported="false" />
-        <activity android:name=".DriverRequestsActivity"
-            android:exported="false" />
-
+        <!-- Google Maps API Key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <!-- Default icon & channel for FCM notification messages -->
+        <!-- FCM Notification Settings -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_notification" />
@@ -74,49 +41,42 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="colligo_default" />
 
-        <activity
-            android:name=".HelpActivity"
-            android:exported="false" />
-        <activity
-            android:name=".NotificationSettingsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LanguageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AccountActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SettingsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CampusMapActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RidesDashboardActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LostFoundActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
+        <!-- All Activities -->
+        <activity android:name=".RequestedRidesActivity" android:exported="false" />
+        <activity android:name=".RequestRideActivity" android:exported="false" />
+        <activity android:name=".ViewAvailableRidesActivity" android:exported="false" />
+        <activity android:name=".MyRidesActivity" android:exported="false" />
+        <activity android:name=".RequestSentActivity" android:exported="false" />
+        <activity android:name=".RequestRideResultsActivity" android:exported="false" />
+        <activity android:name=".RequestRideSearchActivity" android:exported="false" />
+        <activity android:name=".OfferRideActivity" android:exported="false" />
+        <activity android:name=".OfferRideSuccessActivity" android:exported="false" />
+        <activity android:name=".PlannerActivity" android:exported="false" />
+        <activity android:name=".DriverRequestsActivity" android:exported="false" />
+        <activity android:name=".HelpActivity" android:exported="false" />
+        <activity android:name=".NotificationSettingsActivity" android:exported="false" />
+        <activity android:name=".LanguageActivity" android:exported="false" />
+        <activity android:name=".AccountActivity" android:exported="false" />
+        <activity android:name=".SettingsActivity" android:exported="false" />
+        <activity android:name=".CampusMapActivity" android:exported="false" />
+        <activity android:name=".RidesDashboardActivity" android:exported="false" />
+        <activity android:name=".LostFoundActivity" android:exported="false" />
+        <activity android:name=".RegisterActivity" android:exported="false" />
+        <activity android:name=".LoginActivity" android:exported="false" />
+        <activity android:name=".AddLectureActivity" android:exported="false" />
+        <activity android:name=".AddAssignmentActivity" android:exported="false" />
+        <activity android:name=".HomeActivity" android:exported="false" />
+        <activity android:name=".MainPlannerActivity" android:exported="false" />
+
+
         <activity
             android:name=".SplashActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+    </application>
 </manifest>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FDF0ED">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="36dp"
+        app:cardElevation="16dp"
+        android:layout_gravity="center"
+        app:cardBackgroundColor="@color/colligo_maroon">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="32dp">
+
+                <!-- Back + Title -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="24dp">
+
+                    <ImageView
+                        android:id="@+id/btnBack"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/ic_back"
+                    app:tint="@color/white"
+                    android:layout_marginEnd="16dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add Assignment"
+                        android:textColor="@color/white"
+                        android:textSize="26sp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+                <!-- Assignment Title -->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    app:boxStrokeColor="@color/white"
+                    app:hintTextColor="@color/white"
+                    app:boxBackgroundColor="#33FFFFFF">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Assignment Title"
+                        android:textColor="@color/white"
+                        android:textColorHint="#FFCDD2"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Due Date -->
+                <TextView
+                    android:id="@+id/tvDueDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Due Date: Select"
+                    android:textColor="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:background="@drawable/rounded_stroke_white"
+                    android:layout_marginBottom="20dp"/>
+
+                <!-- Color Picker -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:layout_marginBottom="24dp">
+
+                    <LinearLayout
+                        android:id="@+id/colorPicker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:padding="8dp"/>
+                </HorizontalScrollView>
+
+                <!-- Notes -->
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    app:boxStrokeColor="@color/white"
+                    app:hintTextColor="@color/white"
+                    app:boxBackgroundColor="#33FFFFFF">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNotes"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:hint="Add Notes (optional)"
+                        android:textColor="@color/white"
+                        android:textColorHint="#FFCDD2"
+                        android:gravity="top"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Save Button -->
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Add Assignment"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colligo_maroon"
+                    android:background="@drawable/rounded_button_white"
+                    app:elevation="8dp"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Main Activity Layout - Contains top bar and fragment container -->
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FDF0ED">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Top Bar with Toggle Arrows -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical"
+            android:background="@android:color/white"
+            android:elevation="8dp">
+
+            <!-- Settings Button -->
+            <ImageView
+                android:id="@+id/btnSettings"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_settings"
+                app:tint="@color/black"
+                android:contentDescription="Settings" />
+
+            <!-- Center Section with Toggle Arrows and Title -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <!-- Left Arrow (Previous/Toggle) -->
+                <ImageView
+                    android:id="@+id/btnToggleLeft"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_back"
+                    app:tint="@color/black"
+                    android:contentDescription="Previous" />
+
+                <!-- Title Text (Lectures or Assignments) -->
+                <TextView
+                    android:id="@+id/tvTabTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lectures"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginHorizontal="24dp" />
+
+                <!-- Right Arrow (Next/Toggle) -->
+                <ImageView
+                    android:id="@+id/btnToggleRight"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_forward"
+                    app:tint="@color/black"
+                    android:contentDescription="Next" />
+            </LinearLayout>
+
+            <!-- Search Button -->
+            <ImageView
+                android:id="@+id/btnSearch"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_search"
+                app:tint="@color/black"
+                android:contentDescription="Search" />
+        </LinearLayout>
+
+        <!-- Fragment Container - This is where LecturesFragment or AssignmentsFragment will load -->
+        <FrameLayout
+            android:id="@+id/fragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Spacer for FAB (so content doesn't hide behind button) -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+    </LinearLayout>
+
+    <!-- Floating Action Button (Add Lecture/Assignment) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="86dp"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="#000000"
+        app:tint="#FFFFFF"
+        app:elevation="12dp"
+        android:contentDescription="Add" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

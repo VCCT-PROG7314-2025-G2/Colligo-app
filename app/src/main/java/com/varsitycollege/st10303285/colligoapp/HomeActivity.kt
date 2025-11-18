@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity() {
 
-    // Feature cards (MaterialCardView but same IDs)
+    // Feature cards
     private lateinit var plannerCard: View
     private lateinit var lostFoundCard: View
     private lateinit var carpoolCard: View
@@ -39,7 +39,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var lectureRecycler: RecyclerView
     private val lectureAdapter = LectureAdapter()
 
-    // Bottom navigation (from your included nav_bar.xml)
+    // Bottom navigation
     private var navBar: LinearLayout? = null
     private var iconHome: ImageView? = null
     private var iconLocation: ImageView? = null
@@ -53,25 +53,17 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        // Bring bottom nav to front
-        findViewById<LinearLayout>(R.id.bottomNav)?.apply {
-            bringToFront()
-            invalidate()
-        }
+        setupFirestore()
+        initializeViews()
+        setupUI()
+        setupData()
+    }
 
+    private fun setupFirestore() {
         // Enable offline persistence
         firestore.firestoreSettings = FirebaseFirestoreSettings.Builder()
             .setPersistenceEnabled(true)
             .build()
-
-        initializeViews()
-        updateGreetingWithUserName()
-        setupFeatureCardClicks()
-        setupSchedule()
-        setupBottomNavigation()
-        ensureUserDocumentExists()
-        registerFcmToken()
-        requestNotificationPermission()
     }
 
     private fun initializeViews() {
@@ -86,6 +78,34 @@ class HomeActivity : AppCompatActivity() {
         lectureRecycler.layoutManager = LinearLayoutManager(this)
         lectureRecycler.adapter = lectureAdapter
 
+        // Bottom navigation
+        navBar = findViewById(R.id.bottomNav)
+        iconHome = navBar?.findViewById(R.id.iconHome)
+        iconLocation = navBar?.findViewById(R.id.iconLocation)
+        iconCarpool = navBar?.findViewById(R.id.iconCarpool)
+        iconCalendar = navBar?.findViewById(R.id.iconCalendar)
+        iconLostFound = navBar?.findViewById(R.id.iconLostFound)
+    }
+
+    private fun setupUI() {
+        // Bring bottom nav to front
+        navBar?.apply {
+            bringToFront()
+            invalidate()
+        }
+
+        // Handle notch & gesture navigation padding
+        ViewCompat.setOnApplyWindowInsetsListener(navBar ?: return) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(0, 0, 0, systemBars.bottom)
+            insets
+        }
+
+        setupClickListeners()
+        setupBottomNavigation()
+    }
+
+    private fun setupClickListeners() {
         // Top bar buttons
         findViewById<ImageView>(R.id.btnSettings).setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
@@ -94,6 +114,51 @@ class HomeActivity : AppCompatActivity() {
         findViewById<ImageView>(R.id.btnSearch)?.setOnClickListener {
             Toast.makeText(this, "Search coming soon", Toast.LENGTH_SHORT).show()
         }
+
+        // Feature cards
+        plannerCard.setOnClickListener {
+            startActivity(Intent(this, MainPlannerActivity::class.java))
+        }
+        lostFoundCard.setOnClickListener {
+            startActivity(Intent(this, LostFoundActivity::class.java))
+        }
+        carpoolCard.setOnClickListener {
+            startActivity(Intent(this, RidesDashboardActivity::class.java))
+        }
+        mapCard.setOnClickListener {
+            startActivity(Intent(this, CampusMapActivity::class.java))
+        }
+    }
+
+    private fun setupBottomNavigation() {
+        iconHome?.setOnClickListener {
+            findViewById<NestedScrollView>(R.id.scrollContent)?.smoothScrollTo(0, 0)
+            Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
+        }
+
+        iconLocation?.setOnClickListener {
+            startActivity(Intent(this, CampusMapActivity::class.java))
+        }
+
+        iconCarpool?.setOnClickListener {
+            startActivity(Intent(this, RidesDashboardActivity::class.java))
+        }
+
+        iconCalendar?.setOnClickListener {
+            startActivity(Intent(this, MainPlannerActivity::class.java))
+        }
+
+        iconLostFound?.setOnClickListener {
+            startActivity(Intent(this, LostFoundActivity::class.java))
+        }
+    }
+
+    private fun setupData() {
+        updateGreetingWithUserName()
+        setupSchedule()
+        ensureUserDocumentExists()
+        registerFcmToken()
+        requestNotificationPermission()
     }
 
     private fun updateGreetingWithUserName() {
@@ -117,19 +182,16 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupFeatureCardClicks() {
-        plannerCard.setOnClickListener { startActivity(Intent(this, PlannerActivity::class.java)) }
-        lostFoundCard.setOnClickListener { startActivity(Intent(this, LostFoundActivity::class.java)) }
-        carpoolCard.setOnClickListener { startActivity(Intent(this, RidesDashboardActivity::class.java)) }
-        mapCard.setOnClickListener { startActivity(Intent(this, CampusMapActivity::class.java)) }
-    }
-
     private fun setupSchedule() {
         loadScheduleFromFirestore()
 
+        // Real-time listener for schedule updates
         firestore.collection("schedule")
             .addSnapshotListener { snapshot, error ->
-                if (error != null) return@addSnapshotListener
+                if (error != null) {
+                    Log.e("HomeActivity", "Error listening to schedule", error)
+                    return@addSnapshotListener
+                }
 
                 val lectures = snapshot?.documents?.mapNotNull {
                     LectureItem(
@@ -155,50 +217,9 @@ class HomeActivity : AppCompatActivity() {
                 }
                 lectureAdapter.setItems(list)
             }
-    }
-
-    private fun setupBottomNavigation() {
-        navBar = findViewById(R.id.bottomNav)
-        if (navBar == null) {
-            Log.w("HomeActivity", "bottomNav not found")
-            return
-        }
-
-        // Handle notch & gesture navigation padding
-        ViewCompat.setOnApplyWindowInsetsListener(navBar!!) { view, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            view.setPadding(0, 0, 0, systemBars.bottom)
-            insets
-        }
-
-        // Find your icons from nav_bar.xml
-        iconHome = navBar!!.findViewById(R.id.iconHome)
-        iconLocation = navBar!!.findViewById(R.id.iconLocation)
-        iconCarpool = navBar!!.findViewById(R.id.iconCarpool)
-        iconCalendar = navBar!!.findViewById(R.id.iconCalendar)
-        iconLostFound = navBar!!.findViewById(R.id.iconLostFound)
-
-        // Click listeners – same as your original code
-        iconHome?.setOnClickListener {
-            findViewById<NestedScrollView>(R.id.scrollContent)?.smoothScrollTo(0, 0)
-            Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
-        }
-
-        iconLocation?.setOnClickListener {
-            startActivity(Intent(this, CampusMapActivity::class.java))
-        }
-
-        iconCarpool?.setOnClickListener {
-            startActivity(Intent(this, RidesDashboardActivity::class.java))
-        }
-
-        iconCalendar?.setOnClickListener {
-            startActivity(Intent(this, PlannerActivity::class.java))
-        }
-
-        iconLostFound?.setOnClickListener {
-            startActivity(Intent(this, LostFoundActivity::class.java))
-        }
+            .addOnFailureListener { e ->
+                Log.e("HomeActivity", "Error loading schedule", e)
+            }
     }
 
     private fun ensureUserDocumentExists() {
@@ -214,13 +235,23 @@ class HomeActivity : AppCompatActivity() {
                     "createdAt" to com.google.firebase.Timestamp.now()
                 )
                 ref.set(data, SetOptions.merge())
+                    .addOnSuccessListener {
+                        Log.d("HomeActivity", "User document created")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.e("HomeActivity", "Error creating user document", e)
+                    }
             }
         }
     }
 
     private fun registerFcmToken() {
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
-            if (!task.isSuccessful) return@addOnCompleteListener
+            if (!task.isSuccessful) {
+                Log.e("FCM", "Token failed", task.exception)
+                return@addOnCompleteListener
+            }
+
             val token = task.result
             Log.d("FCM", "Token: $token")
 
@@ -228,8 +259,9 @@ class HomeActivity : AppCompatActivity() {
                 try {
                     val repo = com.varsitycollege.st10303285.colligoapp.repository.ApiRepository()
                     repo.registerFcmToken(token)
+                    Log.d("FCM", "Token registered successfully")
                 } catch (e: Exception) {
-                    Log.e("FCM", "Failed", e)
+                    Log.e("FCM", "Failed to register token", e)
                 }
             }
         }
@@ -242,9 +274,24 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 1001) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d("HomeActivity", "Notification permission granted")
+            } else {
+                Log.d("HomeActivity", "Notification permission denied")
+            }
+        }
+    }
 }
 
-// Data class & clean adapter
+// Data class & adapter
 data class LectureItem(val title: String, val time: String)
 
 class LectureAdapter : RecyclerView.Adapter<LectureAdapter.ViewHolder>() {
@@ -263,8 +310,9 @@ class LectureAdapter : RecyclerView.Adapter<LectureAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.title.text = items[position].title
-        holder.time.text = items[position].time
+        val item = items[position]
+        holder.title.text = item.title
+        holder.time.text = item.time
     }
 
     override fun getItemCount() = items.size
