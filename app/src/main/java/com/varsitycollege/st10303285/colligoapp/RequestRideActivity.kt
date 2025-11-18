@@ -25,7 +25,7 @@ class RequestRideActivity : AppCompatActivity() {
         // simple programmatic header + button added above the RecyclerView
         val container = findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.rvRides).parent as? android.view.ViewGroup
         tvInfo = TextView(this).apply { textSize = 16f; setPadding(12,12,12,12) }
-        btnRequest = Button(this).apply { text = "Request Seat" }
+        btnRequest = Button(this).apply { text = "Request Seat/ View details" }
         container?.addView(tvInfo, 0)
         container?.addView(btnRequest, 1)
 

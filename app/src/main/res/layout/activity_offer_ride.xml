@@ -2,7 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:background="@color/colligo_maroon"
+    >
 
     <LinearLayout
         android:orientation="vertical"
@@ -14,6 +16,7 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_marginBottom="20dp"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -22,6 +25,7 @@
             android:hint="Pickup Location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_marginBottom="12dp" />
 
         <EditText
@@ -29,6 +33,7 @@
             android:hint="Destination"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_marginBottom="12dp" />
 
         <Button
@@ -43,6 +48,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="20dp"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
             android:layout_height="wrap_content" />
 
         <EditText
@@ -51,6 +57,7 @@
             android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_marginBottom="12dp" />
 
         <EditText
@@ -58,6 +65,7 @@
             android:hint="Notes (optional)"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:minHeight="80dp"
             android:gravity="top"
             android:layout_marginBottom="20dp" />
@@ -68,5 +76,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="180dp"
+            android:textColor="@color/white"
+            android:text="Or"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnViewMyRides"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View My Rides"
+            android:contentDescription="View my rides" />
+
     </LinearLayout>
+
+
+
 </ScrollView>

@@ -1,5 +1,6 @@
 package com.varsitycollege.st10303285.colligoapp
 
+import android.R.id.title
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -12,7 +13,7 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
-class MyFirebaseService : FirebaseMessagingService() {
+class MyFirebaseMessagingService : FirebaseMessagingService() {
     private val TAG = "FCM-SERVICE"
     private val CHANNEL_ID = "colligo-notifs"
 
@@ -24,8 +25,7 @@ class MyFirebaseService : FirebaseMessagingService() {
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         Log.d(TAG, "onNewToken: $token")
-        // call your register endpoint (use coroutine scope or WorkManager from an app-level helper)
-        // Example: ApiRepository().registerFcmToken(token)
+
     }
 
     override fun onMessageReceived(message: RemoteMessage) {
@@ -38,14 +38,25 @@ class MyFirebaseService : FirebaseMessagingService() {
             Log.d(TAG, "onMessageReceived - notification: title=${it.title} body=${it.body}")
         }
 
-        // Build and display a notification for every message (data or notification)
         val title = message.notification?.title ?: message.data["title"] ?: "Colligo"
         val body = message.notification?.body ?: message.data["body"] ?: "You have a new event"
 
-        val intent = Intent(this, HomeActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        // 👇 Decide where to go when tapping the notification
+        val targetIntent = if (message.data["rideId"] != null) {
+            // New ride request → go to DriverRequestsActivity
+            Intent(this, DriverRequestsActivity::class.java).apply {
+                putExtra("rideId", message.data["rideId"])
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+        } else {
+            // Fallback: just go home
+            Intent(this, HomeActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+        }
+
         val pending = PendingIntent.getActivity(
-            this, 0, intent,
+            this, 0, targetIntent,
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
@@ -53,7 +64,7 @@ class MyFirebaseService : FirebaseMessagingService() {
         val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         val notif = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_notification) // ensure this exists
+            .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(title)
             .setContentText(body)
             .setAutoCancel(true)
@@ -63,6 +74,7 @@ class MyFirebaseService : FirebaseMessagingService() {
 
         nm.notify((System.currentTimeMillis() % 10000).toInt(), notif)
     }
+
 
     private fun createChannelIfNeeded() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

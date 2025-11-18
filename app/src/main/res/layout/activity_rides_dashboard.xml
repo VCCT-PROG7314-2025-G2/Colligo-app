@@ -1,30 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootCarpool"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center">
+    android:background="@color/black">
 
-    <TextView
-        android:text="Carpool Dashboard"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="40dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <!-- Top bar -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_alignParentTop="true">
 
-    <Button
-        android:id="@+id/btnOfferRide"
-        android:text="Offer a Ride"
+        <ImageButton
+            android:id="@+id/btnCarpoolSettings"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Settings"
+            android:src="@drawable/ic_settings" />
+
+        <TextView
+            android:id="@+id/tvCarpoolTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:text="Carpool"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/btnCarpoolSearch"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Search rides"
+            android:src="@drawable/ic_search" />
+    </LinearLayout>
+
+    <!-- Main split area (between top bar and bottom nav) -->
+    <RelativeLayout
+        android:id="@+id/carpoolContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topBar"
+        android:layout_above="@id/bottomNav">
+
+        <!-- Two color halves -->
+        <LinearLayout
+            android:id="@+id/splitBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <!-- Left half: OFFER A RIDE -->
+            <View
+                android:id="@+id/areaOffer"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/carpool_left" />
+
+            <!-- Right half: REQUEST A RIDE -->
+            <View
+                android:id="@+id/areaRequest"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/carpool_right" />
+        </LinearLayout>
+
+        <!-- Central illustration -->
+        <ImageView
+            android:id="@+id/imgCarpoolHero"
+            android:layout_width="302dp"
+            android:layout_height="486dp"
+            android:layout_centerInParent="true"
+            android:contentDescription="Carpool illustration"
+            android:src="@drawable/ic_carpool_hero" />
+
+        <!-- REQUEST A RIDE text (top–right) -->
+        <TextView
+            android:id="@+id/tvRequestRide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REQUEST\nA\nRIDE →"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:lineSpacingExtra="4dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="24dp" />
+
+        <!-- OFFER A RIDE text (bottom–left) -->
+        <TextView
+            android:id="@+id/tvOfferRide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="←\nOFFER\nA\nRIDE"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:lineSpacingExtra="4dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="48dp"
+            android:layout_marginStart="24dp" />
+    </RelativeLayout>
+
+    <!-- Bottom nav pinned to bottom -->
+    <include
+        android:id="@+id/bottomNav"
+        layout="@layout/nav_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"/>
+        android:layout_alignParentBottom="true" />
 
-    <Button
-        android:id="@+id/btnRequestRide"
-        android:text="Request a Ride"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-</LinearLayout>
+</RelativeLayout>

@@ -2,6 +2,7 @@ package com.varsitycollege.st10303285.colligoapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -40,6 +41,7 @@ class MyRidesActivity : AppCompatActivity() {
                     startActivity(i)
                 }
             } else {
+                Log.e("MyRides", "getMyRides failed code=${resp.code()} body=${resp.errorBody()?.string()}")
                 Toast.makeText(this@MyRidesActivity, "Failed to load your rides", Toast.LENGTH_SHORT).show()
             }
         }

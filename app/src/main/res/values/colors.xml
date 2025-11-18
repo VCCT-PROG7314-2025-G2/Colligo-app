@@ -15,6 +15,9 @@
     <color name="gray_light">#F5F5F5</color>
     <color name="gray_medium">#9E9E9E</color>
     <color name="gray_dark">#424242</color>
+    <color name="carpool_left">#9B4C5D</color>   <!-- mauve side -->
+    <color name="carpool_right">#2B1519</color>  <!-- dark plum side -->
+
 
     <!-- Lecture Colors -->
     <color name="lecture_green">#4CAF50</color>

@@ -31,12 +31,17 @@ class OfferRideActivity : AppCompatActivity() {
         val etNotes = findViewById<EditText>(R.id.etNotes)
         timeText = findViewById(R.id.tvTime)
 
+
         progress = ProgressBar(this, null, android.R.attr.progressBarStyleLarge)
         progress.visibility = android.view.View.GONE
         (findViewById<ViewGroup>(android.R.id.content)).addView(progress)
 
         val btnPickTime = findViewById<Button>(R.id.btnPickTime)
         btnPickTime.setOnClickListener { showTimePicker() }
+
+        findViewById<Button>(R.id.btnViewMyRides).setOnClickListener {
+            startActivity(Intent(this, MyRidesActivity::class.java))
+        }
 
         val btnPost = findViewById<Button>(R.id.btnPostRide)
         btnPost.setOnClickListener {
@@ -65,9 +70,11 @@ class OfferRideActivity : AppCompatActivity() {
                     if (success) {
                         Log.d("OfferRide", "Ride posted successfully id=$payload")
                         Toast.makeText(this, "Ride posted", Toast.LENGTH_SHORT).show()
+
                         val i = Intent(this, OfferRideSuccessActivity::class.java)
                         i.putExtra("rideId", payload)
                         startActivity(i)
+                        finish()
                     } else {
                         Log.e("OfferRide", "Post failed: $payload")
                         Toast.makeText(this, "Failed to post ride: $payload", Toast.LENGTH_LONG).show()
