@@ -12,6 +12,8 @@ import com.varsitycollege.st10303285.colligoapp.adapter.RideListAdapter
 import com.varsitycollege.st10303285.colligoapp.repository.ApiRepository
 import kotlinx.coroutines.launch
 
+/ Activity for viewing rides offered by the user
+
 class MyRidesActivity : AppCompatActivity() {
 
     private val repo = ApiRepository()
@@ -21,13 +23,15 @@ class MyRidesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_offered_rides)
 
         val rv = findViewById<RecyclerView?>(R.id.rvRides) ?: run {
-            Toast.makeText(this, "Add a RecyclerView with id rvRides to activity_offered_rides.xml", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "", Toast.LENGTH_LONG).show()
             return
         }
 
         rv.layoutManager = LinearLayoutManager(this)
         loadMyRides(rv)
     }
+
+    // Load rides offered by the user
 
     private fun loadMyRides(rv: RecyclerView) {
         lifecycleScope.launch {
